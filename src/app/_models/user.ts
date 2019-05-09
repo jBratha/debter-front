@@ -5,7 +5,7 @@ export class User {
   firstName: string;
   lastName: string;
   role: string;
-  authorities: Authority;
+  authorities: Authority[];
   enabled: boolean;
   token?: string;
 }

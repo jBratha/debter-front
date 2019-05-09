@@ -15,16 +15,22 @@ export class AppComponent {
   title = 'debter-front';
   mobileQuery: MediaQueryList;
   currentUser: User;
-
+  isAuthenticated: boolean;
+  hasAdminRole: boolean;
 
   nav = [
     {
       'title': 'Strona glowna',
-      'path': '/'
+      'path': '/',
     },
     {
       'title': 'Moje dlugi',
       'path': '/debts'
+    },
+    {
+      'title': 'Admin',
+      'path': '/admin',
+      'requireAdmin': 'true'
     }
   ];
 
@@ -38,21 +44,26 @@ export class AppComponent {
     private router: Router,
     private authenticationService: AuthenticationService
   ) {
+    // this.isAuthenticated = this.authenticationService.
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    // this.isAuthenticated =
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
   toggleMobileNav(nav: MatSidenav) {
     if (this.mobileQuery.matches) {
       nav.toggle();
-      console.log('toggle');
     }
   }
 
 
-  get isAdmin() {
-    return this.currentUser && this.currentUser.role === Role.Admin;
+  isAdmin() {
+    console.log('isAdmin?');
+    this.authenticationService.getInfoAboutYourself().subscribe(
+      me => this.hasAdminRole = me.authorities.includes({authority: Role.Admin})
+    );
   }
 
   logout() {

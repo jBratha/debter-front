@@ -41,14 +41,33 @@ export class AuthenticationService {
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
         }
-
         return user;
       }));
+  }
+
+  public isAuthenticated(): boolean {
+    const token = localStorage.getItem('currentUser');
+    console.log(token);
+    // console.log(token.token);
+    return token !== null;
+    // return token.token;
+    // Check whether the token is expired and return
+    // true or false
+    // return !this.jwtHelper.isTokenExpired(token);
   }
 
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+  }
+
+  getInfoAboutYourself() {
+    return this.http.get<User>(`${environment.api}/users/me`);
+  }
+
+  isAdmin() {
+    // this.getInfoAboutYourself().
+    return this.getInfoAboutYourself();
   }
 }

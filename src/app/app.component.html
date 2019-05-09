@@ -1,67 +1,87 @@
 <!--<mat-sidenav-container fullscreen [hasBackdrop]="mobileQuery.matches">-->
-  <!--<mat-sidenav #lnav mode="over" class="sidenav">-->
-    <!--<div class="content">-->
-      <!--<mat-list>-->
-        <!--<mat-list-item *ngFor="let route of nav">-->
-          <!--<a mat-button routerLink="{{route.path}}" routerLinkActive="active"-->
-             <!--(click)="toggleMobileNav(lnav)">{{route.title}}</a>-->
-        <!--</mat-list-item>-->
-      <!--</mat-list>-->
-    <!--</div>-->
-  <!--</mat-sidenav>-->
-  <!--<mat-sidenav-content class="sidenav-content">-->
-    <!--<mat-toolbar class="toolbar" [class.app-is-mobile]="mobileQuery.matches" color="primary">-->
-      <!--<button mat-icon-button (click)="lnav.toggle()" *ngIf="mobileQuery.matches">-->
-        <!--<mat-icon>menu</mat-icon>-->
-      <!--</button>-->
-      <!--{{title}}-->
-      <!--<div class="fill-space"></div>-->
-      <!--<span whoami></span>-->
-    <!--</mat-toolbar>-->
-    <!--<mat-drawer-container class="sidenav-container">-->
-      <!--<mat-drawer mode="side" [opened]="!mobileQuery.matches">-->
-        <!--<div class="content">-->
-          <!--<mat-list>-->
-            <!--<mat-list-item *ngFor="let route of nav">-->
-              <!--<a mat-button routerLink="{{route.path}}" routerLinkActive="active"-->
-                 <!--(click)="toggleMobileNav(lnav)">{{route.title}}</a>-->
-            <!--</mat-list-item>-->
-          <!--</mat-list>-->
-        <!--</div>-->
-      <!--</mat-drawer>-->
-      <!--<mat-drawer-content>-->
-        <!--<div class="content">-->
-          <!--<router-outlet></router-outlet>-->
-        <!--</div>-->
-      <!--</mat-drawer-content>-->
-    <!--</mat-drawer-container>-->
-  <!--</mat-sidenav-content>-->
+<!--<mat-sidenav #lnav mode="over" class="sidenav">-->
+<!--<div class="content">-->
+<!--<mat-list>-->
+<!--<mat-list-item *ngFor="let route of nav">-->
+<!--<a mat-button routerLink="{{route.path}}" routerLinkActive="active"-->
+<!--(click)="toggleMobileNav(lnav)">{{route.title}}</a>-->
+<!--</mat-list-item>-->
+<!--</mat-list>-->
+<!--</div>-->
+<!--</mat-sidenav>-->
+<!--<mat-sidenav-content class="sidenav-content">-->
+<!--<mat-toolbar class="toolbar" [class.app-is-mobile]="mobileQuery.matches" color="primary">-->
+<!--<button mat-icon-button (click)="lnav.toggle()" *ngIf="mobileQuery.matches">-->
+<!--<mat-icon>menu</mat-icon>-->
+<!--</button>-->
+<!--{{title}}-->
+<!--<div class="fill-space"></div>-->
+<!--<span whoami></span>-->
+<!--</mat-toolbar>-->
+<!--<mat-drawer-container class="sidenav-container">-->
+<!--<mat-drawer mode="side" [opened]="!mobileQuery.matches">-->
+<!--<div class="content">-->
+<!--<mat-list>-->
+<!--<mat-list-item *ngFor="let route of nav">-->
+<!--<a mat-button routerLink="{{route.path}}" routerLinkActive="active"-->
+<!--(click)="toggleMobileNav(lnav)">{{route.title}}</a>-->
+<!--</mat-list-item>-->
+<!--</mat-list>-->
+<!--</div>-->
+<!--</mat-drawer>-->
+<!--<mat-drawer-content>-->
+<!--<div class="content">-->
+<!--<router-outlet></router-outlet>-->
+<!--</div>-->
+<!--</mat-drawer-content>-->
+<!--</mat-drawer-container>-->
+<!--</mat-sidenav-content>-->
 <!--</mat-sidenav-container>-->
 
-<!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
-  <div class="navbar-nav">
-    <a class="nav-item nav-link" routerLink="/">Home</a>
-    <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>
-    <a class="nav-item nav-link" (click)="logout()">Logout</a>
-  </div>
-</nav>
-
 <!-- main app container -->
-<div class="jumbotron">
-  <div class="container">
-    <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/">Home</a>
-        <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>
-        <a class="nav-item nav-link" (click)="logout()">Logout</a>
-      </div>
-    </nav>
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <router-outlet></router-outlet>
-        <button (click)="logout()">Logout</button>
-      </div>
-    </div>
+<!--<div class="jumbotron">-->
+<!--<div class="container">-->
+<!--<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">-->
+<!--<div class="navbar-nav">-->
+<!--<a class="nav-item nav-link" routerLink="/">Home</a>-->
+<!--<a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>-->
+<!--<a class="nav-item nav-link" (click)="logout()">Logout</a>-->
+<!--</div>-->
+<!--</nav>-->
+<!--<div class="row">-->
+<!--<div class="col-md-6 offset-md-3">-->
+<!--&lt;!&ndash;<router-outlet></router-outlet>&ndash;&gt;-->
+<!--<button (click)="logout()">Logout</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<mat-toolbar color="primary" class="expanded-toolbar" *ngIf="currentUser">
+  <span>
+    <button mat-button routerLink="/"><mat-icon>home</mat-icon></button>
+    <button mat-button routerLink="/">{{title}}</button>
+  </span>
+  <div *ngFor="let route of nav">
+    <button mat-button routerLink="{{route.path}}" *ngIf="route.requireAdmin && hasAdminRole">{{route.title}}</button>
   </div>
-</div>
+  <button mat-button (click)="logout()">Wyloguj</button>
+
+</mat-toolbar>
+<router-outlet></router-outlet>
+
+<!--<div class="app-container">-->
+<!--<mat-sidenav-container fullscreen [hasBackdrop]="mobileQuery.matches">-->
+<!--<mat-sidenav #lnav mode="over" class="sidenav">-->
+<!--<div class="content">-->
+<!--<mat-list>-->
+<!--<mat-list-item *ngFor="let route of nav">-->
+<!--&lt;!&ndash;<a mat-button routerLink="{{route.path}}"&ndash;&gt;-->
+<!--&lt;!&ndash;routerLinAc&ndash;&gt;-->
+<!--</mat-list-item>-->
+<!--</mat-list>-->
+<!--</div>-->
+<!--</mat-sidenav>-->
+<!--</mat-sidenav-container>-->
+
+<!--</div>-->
