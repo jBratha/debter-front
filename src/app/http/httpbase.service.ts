@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {environment} from "../../environments/environment";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {environment} from '../../environments/environment';
+import {Observable} from 'rxjs';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+};
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +21,9 @@ export class HttpbaseService {
     this.headers = this.headers.set('Accept', 'application/json');
   }
 
-  getAll<T>() {
+  getAll<T>(endpoint?: string): Observable<any> {
     console.log(this.endpoint);
-    return this.httpClient.get<T>(this.endpoint, { observe: 'response' });
+    return this.httpClient.get<T>(this.endpoint + (endpoint === undefined) ? '' : `${endpoint}`, { observe: 'response' });
   }
 
   getSingle<T>(id: number) {

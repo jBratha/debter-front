@@ -1,62 +1,67 @@
-<mat-sidenav-container fullscreen [hasBackdrop]="mobileQuery.matches">
-  <mat-sidenav #lnav mode="over" class="sidenav">
-    <div class="content">
-      <mat-list>
-        <mat-list-item *ngFor="let route of nav">
-          <a mat-button routerLink="{{route.path}}" routerLinkActive="active"
-             (click)="toggleMobileNav(lnav)">{{route.title}}</a>
-        </mat-list-item>
-      </mat-list>
+<!--<mat-sidenav-container fullscreen [hasBackdrop]="mobileQuery.matches">-->
+  <!--<mat-sidenav #lnav mode="over" class="sidenav">-->
+    <!--<div class="content">-->
+      <!--<mat-list>-->
+        <!--<mat-list-item *ngFor="let route of nav">-->
+          <!--<a mat-button routerLink="{{route.path}}" routerLinkActive="active"-->
+             <!--(click)="toggleMobileNav(lnav)">{{route.title}}</a>-->
+        <!--</mat-list-item>-->
+      <!--</mat-list>-->
+    <!--</div>-->
+  <!--</mat-sidenav>-->
+  <!--<mat-sidenav-content class="sidenav-content">-->
+    <!--<mat-toolbar class="toolbar" [class.app-is-mobile]="mobileQuery.matches" color="primary">-->
+      <!--<button mat-icon-button (click)="lnav.toggle()" *ngIf="mobileQuery.matches">-->
+        <!--<mat-icon>menu</mat-icon>-->
+      <!--</button>-->
+      <!--{{title}}-->
+      <!--<div class="fill-space"></div>-->
+      <!--<span whoami></span>-->
+    <!--</mat-toolbar>-->
+    <!--<mat-drawer-container class="sidenav-container">-->
+      <!--<mat-drawer mode="side" [opened]="!mobileQuery.matches">-->
+        <!--<div class="content">-->
+          <!--<mat-list>-->
+            <!--<mat-list-item *ngFor="let route of nav">-->
+              <!--<a mat-button routerLink="{{route.path}}" routerLinkActive="active"-->
+                 <!--(click)="toggleMobileNav(lnav)">{{route.title}}</a>-->
+            <!--</mat-list-item>-->
+          <!--</mat-list>-->
+        <!--</div>-->
+      <!--</mat-drawer>-->
+      <!--<mat-drawer-content>-->
+        <!--<div class="content">-->
+          <!--<router-outlet></router-outlet>-->
+        <!--</div>-->
+      <!--</mat-drawer-content>-->
+    <!--</mat-drawer-container>-->
+  <!--</mat-sidenav-content>-->
+<!--</mat-sidenav-container>-->
+
+<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+  <div class="navbar-nav">
+    <a class="nav-item nav-link" routerLink="/">Home</a>
+    <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>
+    <a class="nav-item nav-link" (click)="logout()">Logout</a>
+  </div>
+</nav>
+
+<!-- main app container -->
+<div class="jumbotron">
+  <div class="container">
+    <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/">Home</a>
+        <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>
+        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+      </div>
+    </nav>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <router-outlet></router-outlet>
+        <button (click)="logout()">Logout</button>
+      </div>
     </div>
-  </mat-sidenav>
-  <mat-sidenav-content class="sidenav-content">
-    <mat-toolbar class="toolbar" [class.app-is-mobile]="mobileQuery.matches" color="primary">
-      <button mat-icon-button (click)="lnav.toggle()" *ngIf="mobileQuery.matches">
-        <mat-icon>menu</mat-icon>
-      </button>
-      {{title}}
-      <div class="fill-space"></div>
-      <span whoami></span>
-    </mat-toolbar>
-    <mat-drawer-container class="sidenav-container">
-      <mat-drawer mode="side" [opened]="!mobileQuery.matches">
-        <div class="content">
-          <mat-list>
-            <mat-list-item *ngFor="let route of nav">
-              <a mat-button routerLink="{{route.path}}" routerLinkActive="active"
-                 (click)="toggleMobileNav(lnav)">{{route.title}}</a>
-            </mat-list-item>
-          </mat-list>
-        </div>
-      </mat-drawer>
-      <mat-drawer-content>
-        <div class="content">
-          <router-outlet></router-outlet>
-        </div>
-      </mat-drawer-content>
-    </mat-drawer-container>
-  </mat-sidenav-content>
-</mat-sidenav-container>
-
-
-<!--
-<div class="container" [class.is-mobile]="mobileQuery.matches" >
-  <mat-toolbar color="primary" class="toolbar">
-    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-     <h1 class="example-app-name">Responsive App</h1> -->
-<!-- </mat-toolbar>
-
-<mat-sidenav-container class="sidenav-container"
-                       [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-  <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-               [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
-    <mat-nav-list>
-      <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a>
-    </mat-nav-list>
-  </mat-sidenav>
-
-  <mat-sidenav-content>
-    <p *ngFor="let content of fillerContent">{{content}}</p>
-  </mat-sidenav-content>
-</mat-sidenav-container>
-</div> -->
+  </div>
+</div>
