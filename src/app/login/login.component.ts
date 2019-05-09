@@ -3,11 +3,10 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../_services/authentication.service';
 import {first} from 'rxjs/operators';
-import {AlertService} from "../_services/alert.service";
-import {MatCheckbox} from "@angular/material";
+import {AlertService} from '../_services/alert.service';
+import {MatCheckbox} from '@angular/material';
 
 @Component({
-  selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
@@ -55,7 +54,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('onSubmit');
     this.submitted = true;
 
     // stop here if form is invalid
@@ -63,24 +61,13 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    console.log('loading');
-
     this.loading = true;
     this.authenticationService.login(this.f.username.value, this.f.password.value)
       .pipe(first())
       .subscribe(
         data => {
-          debugger;
-
-          console.log("data");
-          console.log(data);
           this.router.navigate([this.returnUrl]);
-        },
-        error => {
-          debugger;
-          console.log("error");
-          console.log(error);
-          this.alertService.error(error);
+        }, error1 => {
           this.loading = false;
         });
   }

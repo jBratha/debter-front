@@ -22,7 +22,6 @@ export class HttpbaseService {
   }
 
   getAll<T>(endpoint?: string): Observable<any> {
-    console.log(this.endpoint);
     return this.httpClient.get<T>(this.endpoint + (endpoint === undefined) ? '' : `${endpoint}`, { observe: 'response' });
   }
 

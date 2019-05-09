@@ -17,24 +17,22 @@
           <td>
             <mat-form-field appearance="standard" class="full-width">
               <mat-label>Hasło</mat-label>
-              <input matInput [type]="showPassword.checked ? 'text' : 'password'"
-                formControlName="password" required>
+              <input id="password" matInput formControlName="password" type="password" required showHideInput>
+              <i matSuffix
+                 class="material-icons"
+                 showHideTrigger="password"
+                 [showHideStatus]="{ materialIcon: true, id: 'password' }"
+              ></i>
             </mat-form-field>
           </td>
         </tr>
-        <tr>
-          <td>
-            <div class="show-password">
-              <mat-checkbox #showPassword>Pokaż hasło</mat-checkbox>
-            </div>
-          </td>
-        </tr>
+
       </table>
     </form>
     <mat-spinner [style.display]="loading ? 'block': 'none'"></mat-spinner>
   </mat-card-content>
   <mat-card-actions>
     <button mat-raised-button [disabled]="loading" (click)="onSubmit()" color="primary">Zaloguj</button>
-    <button mat-button routerLink="/register">Rejestracja</button>
+    <button mat-raised-button routerLink="/register">Rejestracja</button>
   </mat-card-actions>
 </mat-card>

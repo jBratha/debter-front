@@ -39,6 +39,7 @@ import {
   MatTooltipModule,
   MatTreeModule,
 } from '@angular/material';
+import {ShowHidePasswordModule} from 'ngx-show-hide-password';
 @NgModule({
   exports: [
     CdkTableModule,
@@ -78,6 +79,7 @@ import {
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    ShowHidePasswordModule,
   ],
   declarations: [],
   imports: [

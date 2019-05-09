@@ -15,8 +15,8 @@ export class AppComponent {
   title = 'debter-front';
   mobileQuery: MediaQueryList;
   currentUser: User;
-  isAuthenticated: boolean;
-  hasAdminRole: boolean;
+  // isAuthenticated: boolean;
+  // hasAdminRole: boolean;
 
   nav = [
     {
@@ -44,12 +44,11 @@ export class AppComponent {
     private router: Router,
     private authenticationService: AuthenticationService
   ) {
-    // this.isAuthenticated = this.authenticationService.
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
-    // this.isAuthenticated =
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+
   }
 
   toggleMobileNav(nav: MatSidenav) {
@@ -60,10 +59,7 @@ export class AppComponent {
 
 
   isAdmin() {
-    console.log('isAdmin?');
-    this.authenticationService.getInfoAboutYourself().subscribe(
-      me => this.hasAdminRole = me.authorities.includes({authority: Role.Admin})
-    );
+    return this.authenticationService.isAdmin();
   }
 
   logout() {

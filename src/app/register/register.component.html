@@ -33,24 +33,35 @@
           <td>
             <mat-form-field appearance="standard" class="full-width">
               <mat-label>Hasło</mat-label>
-              <input matInput [type]="showPassword.checked ? 'text' : 'password'"
-                     formControlName="password" required>
+              <input id="password" matInput formControlName="password" type="password" required showHideInput>
               <mat-hint align="start">Minimalna długość 5</mat-hint>
+              <i matSuffix
+                 class="material-icons"
+                 showHideTrigger="password"
+                 [showHideStatus]="{ materialIcon: true, id: 'password' }"
+              ></i>
             </mat-form-field>
           </td>
         </tr>
         <tr>
           <td>
-            <div class="show-password">
-              <mat-checkbox #showPassword>Pokaż hasło</mat-checkbox>
-            </div>
+            <mat-form-field appearance="standard" class="full-width">
+              <mat-label>Powtórz hasło</mat-label>
+              <input id="confirmPassword" matInput formControlName="confirmPassword" type="password" required showHideInput>
+              <i matSuffix
+                 class="material-icons"
+                 showHideTrigger="confirmPassword"
+                 [showHideStatus]="{ materialIcon: true, id: 'confirmPassword' }"
+              ></i>
+            </mat-form-field>
           </td>
         </tr>
+
       </table>
     </form>
   </mat-card-content>
   <mat-card-actions>
     <button mat-raised-button (click)="onSubmit()" color="primary">Zarejestruj</button>
-    <button mat-button routerLink="/">Anuluj</button>
+    <button mat-raised-button routerLink="/">Anuluj</button>
   </mat-card-actions>
 </mat-card>

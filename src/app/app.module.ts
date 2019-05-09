@@ -6,15 +6,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './core/material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LoginComponent} from './login/login.component';
-import {AppRoutingModule} from './core/app-routing.module';
+import {AppRoutingModule} from './app-routing.module';
 import {AdminComponent} from './admin/admin.component';
 import {HomeComponent} from './home/home.component';
 import {JwtInterceptor} from './_helpers/jwt.interceptor';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {ErrorInterceptor} from './_helpers/error.interceptor';
-import {UserComponent} from "./user/user.component";
 import { RegisterComponent } from './register/register.component';
 import { AlertComponent } from './_component/alert.component';
+import { TestComponent } from './test/test.component';
 
 // import {FlexLayoutModule} from '@angular/flex-layout';
 
@@ -22,11 +22,11 @@ import { AlertComponent } from './_component/alert.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    UserComponent,
     AdminComponent,
     HomeComponent,
     RegisterComponent,
     AlertComponent,
+    TestComponent,
   ],
   imports: [
     BrowserModule,

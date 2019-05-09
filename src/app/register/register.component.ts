@@ -1,14 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
-import {AuthenticationService} from "../_services/authentication.service";
-import {UserService} from "../_services/user.service";
-import {AlertService} from "../_services/alert.service";
-import {MatCheckbox} from "@angular/material";
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {first} from 'rxjs/operators';
+import {AuthenticationService} from '../_services/authentication.service';
+import {UserService} from '../_services/user.service';
+import {AlertService} from '../_services/alert.service';
+import {MatCheckbox} from '@angular/material';
+import {PasswordValidation} from '../_helpers/password-validation';
 
 
-@Component({templateUrl: 'register.component.html'})
+@Component({
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
+})
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   loading = false;
@@ -33,12 +37,15 @@ export class RegisterComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(5)]]
-    });
+      password: ['', [Validators.required, Validators.minLength(5)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(5)]]
+    }, {validator: PasswordValidation.MatchPassword});
   }
 
   // convenience getter for easy access to form fields
-  get f() { return this.registerForm.controls; }
+  get f() {
+    return this.registerForm.controls;
+  }
 
   onSubmit() {
     this.submitted = true;
