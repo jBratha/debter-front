@@ -57,6 +57,8 @@
 <!--</div>-->
 <!--</div>-->
 
+
+
 <mat-toolbar color="primary" class="expanded-toolbar" *ngIf="currentUser">
   <span>
     <button mat-button routerLink="/"><mat-icon>home</mat-icon></button>
@@ -65,9 +67,10 @@
   <div *ngFor="let route of nav">
     <button mat-button routerLink="{{route.path}}" *ngIf="route.requireAdmin && hasAdminRole">{{route.title}}</button>
   </div>
-  <button mat-button (click)="logout()">Wyloguj</button>
+  <button mat-button (click)="logout()" >Wyloguj</button>
 
 </mat-toolbar>
+<alert></alert>
 <router-outlet></router-outlet>
 
 <!--<div class="app-container">-->

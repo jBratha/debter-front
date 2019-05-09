@@ -5,6 +5,7 @@ import {AuthGuard} from '../_guards/auth.guard';
 import {AdminComponent} from '../admin/admin.component';
 import {Role} from '../_models/role';
 import {HomeComponent} from '../home/home.component';
+import {RegisterComponent} from "../register/register.component";
 
 const routes: Routes = [
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent
   },
+  { path: 'register', component: RegisterComponent },
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }

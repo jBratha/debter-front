@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpbaseService} from '../http/httpbase.service';
 import {User} from '../_models/user';
 import {Observable} from 'rxjs';
@@ -9,7 +9,8 @@ import {environment} from '../../environments/environment';
   providedIn: 'root'
 })
 export class UserService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   // getAllUsers() {
   //   return super.getAll<User>('/users');
@@ -30,5 +31,17 @@ export class UserService {
 
   getInfoAboutYourself() {
     return this.http.get<User>(`${environment.api}/users/me`);
+  }
+
+  register(user: User) {
+    return this.http.post(`${environment.api}/users/register`, user);
+  }
+
+  update(user: User) {
+    return this.http.put(`${environment.api}/users/${user.id}`, user);
+  }
+
+  delete(id: number) {
+    return this.http.delete(`${environment.api}/users/${id}`);
   }
 }
