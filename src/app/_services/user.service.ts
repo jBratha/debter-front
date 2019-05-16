@@ -21,8 +21,8 @@ export class UserService {
   //   // return this.http.get<User>(`${config.apiUrl}/users/${id}`);
   // }
 
-  getAllUsers() {
-    return this.http.get<User[]>(`${environment.api}/users`);
+  getAllUsers<T>() {
+    return this.http.get<User[]>(`${environment.api}/users`, {observe: 'response'});
   }
 
   getByUsername(username: String) {

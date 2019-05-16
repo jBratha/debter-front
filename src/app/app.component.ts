@@ -1,10 +1,11 @@
-import {ChangeDetectorRef, Component, EventEmitter, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Output, ViewChild} from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
 import {MatSidenav} from '@angular/material';
 import {User} from './_models/user';
 import {Router} from '@angular/router';
 import {AuthenticationService} from './_services/authentication.service';
 import {Role} from './_models/role';
+import {PwaService} from './_services/pwa.service';
 
 @Component({
   selector: 'app-root',
@@ -12,17 +13,10 @@ import {Role} from './_models/role';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'debter-front';
-  mobileQuery: MediaQueryList;
+  title = 'Dłużnika 2.0';
   currentUser: User;
-  // isAuthenticated: boolean;
-  // hasAdminRole: boolean;
-
+  @ViewChild(MatSidenav) sidenav;
   nav = [
-    {
-      'title': 'Strona glowna',
-      'path': '/',
-    },
     {
       'title': 'Moje dlugi',
       'path': '/debts'
@@ -42,27 +36,17 @@ export class AppComponent {
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
   ) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-
   }
-
-  toggleMobileNav(nav: MatSidenav) {
-    if (this.mobileQuery.matches) {
-      nav.toggle();
-    }
-  }
-
 
   isAdmin() {
     return this.authenticationService.isAdmin();
   }
 
   logout() {
+    this.sidenav.close();
     this.authenticationService.logout();
     this.router.navigate(['/login']);
   }

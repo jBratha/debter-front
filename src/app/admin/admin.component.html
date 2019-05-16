@@ -1,8 +1,23 @@
-<h1>Admin</h1>
-<p>This page can only be accessed by administrators.</p>
-<div>
-  All users from secure (admin only) api end point:
-  <ul>
-    <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
-  </ul>
-</div>
+<h1>Użytkownicy</h1>
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtr">
+</mat-form-field>
+
+<table mat-table
+       [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container [matColumnDef]="column.field" *ngFor="let column of displayedColumns">
+    <th mat-header-cell *matHeaderCellDef>{{column.show}}</th>
+    <td mat-cell *matCellDef="let element">{{element[column.field]}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="authorities">
+    <th mat-header-cell *matHeaderCellDef>Role</th>
+    <td mat-cell *matCellDef="let element">{{printAuthorities(element)}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"></tr>
+
+</table>
+

@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -10,13 +10,20 @@ import {AppRoutingModule} from './app-routing.module';
 import {AdminComponent} from './admin/admin.component';
 import {HomeComponent} from './home/home.component';
 import {JwtInterceptor} from './_helpers/jwt.interceptor';
-import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ErrorInterceptor} from './_helpers/error.interceptor';
-import { RegisterComponent } from './register/register.component';
-import { AlertComponent } from './_component/alert.component';
-import { TestComponent } from './test/test.component';
+import {RegisterComponent} from './register/register.component';
+import {AlertComponent} from './_component/alert.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {ServiceWorkerModule} from '@angular/service-worker';
+import {environment} from '../environments/environment';
+import {DebtComponent} from './debt/debt.component';
+import {registerLocaleData} from '@angular/common';
+
+import localePl from '@angular/common/locales/pl';
 
 // import {FlexLayoutModule} from '@angular/flex-layout';
+registerLocaleData(localePl, 'pl');
 
 @NgModule({
   declarations: [
@@ -26,21 +33,27 @@ import { TestComponent } from './test/test.component';
     HomeComponent,
     RegisterComponent,
     AlertComponent,
-    TestComponent,
+    DebtComponent,
   ],
   imports: [
     BrowserModule,
+    FlexLayoutModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
     // FlexLayoutModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    {
+      provide: LOCALE_ID,
+      useValue: 'pl',
+    }
   ],
   bootstrap: [AppComponent]
 })

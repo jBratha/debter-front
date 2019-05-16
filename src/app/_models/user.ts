@@ -2,14 +2,15 @@ export class User {
   id: number;
   username: string;
   password: string;
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  lastname: string;
   role: string;
-  authorities: Authority[];
+  authorities: String[];
   enabled: boolean;
   token?: string;
 }
 
 class Authority {
+  id: String;
   authority: String;
 }

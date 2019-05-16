@@ -10,23 +10,19 @@ import {first} from 'rxjs/operators';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  currentUser: User;
   userFromApi: User;
 
   constructor(
     private userService: UserService,
     private authenticationService: AuthenticationService
   ) {
-    this.currentUser = this.authenticationService.currentUserValue;
   }
 
   ngOnInit() {
-
-
     this.userService
       .getInfoAboutYourself()
       // .getByUsername(this.currentUser.username)
-      .pipe(first())
+      // .pipe(first())
       .subscribe(user => {
         this.userFromApi = user;
       });

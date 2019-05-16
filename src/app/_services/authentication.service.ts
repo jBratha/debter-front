@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../../environments/environment';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {BehaviorSubject, Observable, throwError} from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 import {User} from '../_models/user';
 import {AlertService} from './alert.service';
 
@@ -26,19 +26,23 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
+  // public get getAuthorities(): String[] {
+  // return this.
+  // }
+
   attemptAuth(username: string, password: string): Observable<any> {
     const credentials = {username: username, password: password};
     return this.http.post(this.auth, credentials);
   }
 
   login(username: string, password: string) {
-    return this.http.post<any>(this.auth, { username, password })
+    return this.http.post<any>(this.auth, {username, password})
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
         if (user && user.token) {
           this.authorities = user.authorities;
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify({'token': user.token}));
+          localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
         }
 
@@ -47,13 +51,24 @@ export class AuthenticationService {
   }
 
   public hasRole(role: string): boolean {
-    return this.authorities && this.authorities.includes(role);
+    if (this.currentUserValue) {
+      const authorities = this.currentUserValue.authorities;
+      return authorities && authorities.includes(role);
+    }
+    return false;
   }
 
+  public currentUserUsername(): string {
+    if (this.currentUserValue) {
+      return this.currentUserValue.username;
+    }
+    return '';
+  }
 
   public isAuthenticated(): boolean {
     const token = localStorage.getItem('currentUser');
     // console.log(token.token);
+
     return token !== null;
     // return token.token;
     // Check whether the token is expired and return
@@ -74,4 +89,5 @@ export class AuthenticationService {
   public isAdmin() {
     return this.hasRole('ROLE_ADMIN');
   }
+
 }

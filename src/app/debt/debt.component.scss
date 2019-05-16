@@ -1,0 +1,43 @@
+.row-creditor {
+  background-color: #dff0d8;
+}
+
+.row-creditor .mat-column-amount {
+  font-weight: bold;
+}
+
+.row-debtor {
+  background-color: #f2dede;
+}
+
+.row-debtor .mat-column-amount {
+  font-weight: bolder;
+}
+
+.row-debt-resolved {
+  background-color: #dfdfdf;
+
+}
+
+.row-debt-resolved .mat-column-amount {
+  text-decoration: line-through;
+
+}
+
+.row-debt-not-confirmed {
+  background-color: #fcf8e3;
+}
+
+.row-debt-not-confirmed .mat-column-amount {
+  text-decoration: underline dotted;
+  font-style: italic;
+  font-size: 80%;
+}
+
+tr.mat-footer-row {
+  font-weight: bold;
+}
+
+//.mat-column-amount {
+//  //text-decoration: line-through;
+//}

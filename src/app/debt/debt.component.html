@@ -1,0 +1,39 @@
+<div>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtr">
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table mat-table
+           matSort
+           [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <ng-container [matColumnDef]="column.field" *ngFor="let column of displayColumns">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{column.show}}</th>
+        <td mat-cell *matCellDef="let element">{{element[column.field]}}</td>
+        <td mat-footer-cell *matFooterCellDef> {{column.footer}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Ilość</th>
+        <td mat-cell *matCellDef="let element">{{element.amount | currency: 'PLN'}}</td>
+        <td mat-footer-cell *matFooterCellDef> {{summary | currency: 'PLN'}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Stan</th>
+        <td mat-cell *matCellDef="let element">{{getStatus(element.status) }}</td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+      <tr mat-row
+          [ngClass]="getRowStyle(element)"
+          *matRowDef="let element; columns: columnsToDisplay;"></tr>
+      <tr mat-footer-row *matFooterRowDef="columnsToDisplay; sticky: true"></tr>
+
+    </table>
+    <mat-paginator [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons></mat-paginator>
+
+  </div>
+</div>

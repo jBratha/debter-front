@@ -6,6 +6,7 @@ import {AdminComponent} from './admin/admin.component';
 import {Role} from './_models/role';
 import {HomeComponent} from './home/home.component';
 import {RegisterComponent} from './register/register.component';
+import {DebtComponent} from './debt/debt.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,11 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  }, {
+    path: 'debts',
+    component: DebtComponent,
+    canActivate: [AuthGuard],
+    data: {roles: [Role.User]}
   },
   { path: 'register', component: RegisterComponent },
 

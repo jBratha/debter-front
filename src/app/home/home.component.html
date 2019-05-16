@@ -1,17 +1,3 @@
-<h1>Home</h1>
 <div *ngIf="userFromApi">
-  <p>Hello <strong>{{userFromApi.username}}</strong> !</p>
-</div>
-<p>You're logged in with Angular 7 & JWT!!</p>
-<div *ngIf="userFromApi">
-  <p>Your roles are: <strong *ngFor="let rol of userFromApi?.authorities">
-    {{rol.authority}}
-  </strong></p>
-</div>
-<p>This page can be accessed by all authenticated users.</p>
-<div>
-  Current user from secure api end point:
-  <ul>
-    <li *ngIf="userFromApi">{{userFromApi.firstName}} {{userFromApi.lastName}}</li>
-  </ul>
+  <p>Witaj <strong>{{userFromApi.firs}}</strong> !</p>
 </div>

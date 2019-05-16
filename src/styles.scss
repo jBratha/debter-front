@@ -66,6 +66,8 @@ a {
 }
 
 .app-content {
+  background-color: #f2f2f2;
+  height: 100%;
   flex: 1;
   margin: 0 auto;
   padding: 2em;
@@ -94,4 +96,25 @@ a {
 
 h1, h2 {
   text-align: center;
+}
+
+.mat-sidenav-container {
+  min-height: 100%;
+  max-width: 100%;
+  width: 100%;
+  height: 100vh;
+}
+
+.mat-sidenav {
+  min-width: 250px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+table {
+  width: 100%;
 }
