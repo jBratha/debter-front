@@ -17,4 +17,8 @@ export class DebtService {
   getAllDebts<T>() {
     return this.http.get<Debt[]>(`${this.endpoint}/`, {observe: 'response'});
   }
+
+  postDebt(debt: Debt) {
+    return this.http.post(`${this.endpoint}/`, debt)
+  }
 }

@@ -21,6 +21,7 @@ import {DebtComponent} from './debt/debt.component';
 import {registerLocaleData} from '@angular/common';
 
 import localePl from '@angular/common/locales/pl';
+import { AddDebtComponent } from './debt/add-debt/add-debt.component';
 
 // import {FlexLayoutModule} from '@angular/flex-layout';
 registerLocaleData(localePl, 'pl');
@@ -34,6 +35,7 @@ registerLocaleData(localePl, 'pl');
     RegisterComponent,
     AlertComponent,
     DebtComponent,
+    AddDebtComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ registerLocaleData(localePl, 'pl');
     BrowserAnimationsModule,
     MaterialModule,
     AppRoutingModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production})
+    ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
     // FlexLayoutModule
   ],
   providers: [

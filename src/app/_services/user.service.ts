@@ -22,7 +22,11 @@ export class UserService {
   // }
 
   getAllUsers<T>() {
-    return this.http.get<User[]>(`${environment.api}/users`, {observe: 'response'});
+    return this.http.get<User[]>(`${environment.api}/users/all`, {observe: 'response'});
+  }
+
+  getUsernames<T>() {
+    return this.http.get<string>(`${environment.api}/users`, {observe: 'response'});
   }
 
   getByUsername(username: String) {

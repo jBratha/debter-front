@@ -26,10 +26,6 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
-  // public get getAuthorities(): String[] {
-  // return this.
-  // }
-
   attemptAuth(username: string, password: string): Observable<any> {
     const credentials = {username: username, password: password};
     return this.http.post(this.auth, credentials);
@@ -67,13 +63,7 @@ export class AuthenticationService {
 
   public isAuthenticated(): boolean {
     const token = localStorage.getItem('currentUser');
-    // console.log(token.token);
-
     return token !== null;
-    // return token.token;
-    // Check whether the token is expired and return
-    // true or false
-    // return !this.jwtHelper.isTokenExpired(token);
   }
 
   logout() {

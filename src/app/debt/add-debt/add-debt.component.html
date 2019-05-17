@@ -1,0 +1,61 @@
+<div>
+  <form [formGroup]="debtForm" class="debt-form">
+    <div fxLayout="row"
+         fxLayout.lt-sm="column">
+
+      <mat-form-field fxFlex="30">
+        <mat-label>Dłużnik</mat-label>
+        <mat-select formControlName="debtor">
+          <mat-option
+            *ngFor="let username of usernames" [value]="username">
+            {{username}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="30">
+        <mat-label>Wierzyciel</mat-label>
+        <mat-select formControlName="creditor">
+          <mat-option
+            *ngFor="let username of usernames"
+            [value]="username">
+            {{username}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field fxFlex>
+        <mat-label>Kwota</mat-label>
+        <input type="number" matInput formControlName="amount">
+        <mat-hint>Minimum 0.01</mat-hint>
+      </mat-form-field>
+    </div>
+
+
+    <mat-form-field>
+      <mat-label>Opis</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+
+    <!--    <mat-form-field>-->
+
+    <!--    </mat-form-field>-->
+    <mat-action-row fxLayout="row" fxLayoutAlign="space-evenly center">
+      <button mat-raised-button (click)="onSubmit()" color="primary">Dodaj</button>
+      <button mat-raised-button (click)="debtForm.reset()" type="reset" >Wyczyść</button>
+    </mat-action-row>
+
+  </form>
+
+  <!--  <mat-form-field>-->
+  <!--    <mat-label>Dłużnik</mat-label>-->
+  <!--  </mat-form-field>-->
+
+  <!--    <input matInput placeholder="id">-->
+</div>
+<!--
+Dłużnik
+Wierzyciel
+ilość
+opis
+-->

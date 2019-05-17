@@ -2,7 +2,7 @@ export class Debt {
   id: number;
   debtor: string;
   creditor: string;
-  amount: string;
+  amount: number;
   description: string;
   status: DebtStatus;
   confirmedBy: string;
