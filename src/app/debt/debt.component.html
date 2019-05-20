@@ -1,17 +1,26 @@
 <div>
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Dodaj wpis długu
+        </mat-panel-title>
+        <mat-panel-description>
+          Podaj szczegóły
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <add-debt></add-debt>
 
-  <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Dodaj wpis długu
-      </mat-panel-title>
-      <mat-panel-description>
-        Podaj szczegóły
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <add-debt></add-debt>
+    </mat-expansion-panel>
 
-  </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>Filtr</mat-expansion-panel-header>
+      <app-debt-filter></app-debt-filter>
+    </mat-expansion-panel>
+
+
+  </mat-accordion>
+
 
   <mat-divider></mat-divider>
 

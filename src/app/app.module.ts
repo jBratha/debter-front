@@ -22,6 +22,7 @@ import {registerLocaleData} from '@angular/common';
 
 import localePl from '@angular/common/locales/pl';
 import { AddDebtComponent } from './debt/add-debt/add-debt.component';
+import { DebtFilterComponent } from './debt/debt-filter/debt-filter.component';
 
 // import {FlexLayoutModule} from '@angular/flex-layout';
 registerLocaleData(localePl, 'pl');
@@ -36,6 +37,7 @@ registerLocaleData(localePl, 'pl');
     AlertComponent,
     DebtComponent,
     AddDebtComponent,
+    DebtFilterComponent,
   ],
   imports: [
     BrowserModule,
