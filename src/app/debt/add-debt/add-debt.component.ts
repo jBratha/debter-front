@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import {UserService} from "../../_services/user.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {first} from "rxjs/operators";
-import {DebtService} from "../../_services/debt.service";
-import {Debt, DebtStatus} from "../../_models/debt";
-import {Router} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {UserService} from '../../_services/user.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {first} from 'rxjs/operators';
+import {DebtService} from '../../_services/debt.service';
+import {Debt} from '../../_models/debt';
+import {Router} from '@angular/router';
+import {DebtValidation} from '../../_helpers/debt-validation';
 
 @Component({
-  selector: 'add-debt',
+  selector: 'app-add-debt',
   templateUrl: './add-debt.component.html',
   styleUrls: ['./add-debt.component.scss']
 })
@@ -32,7 +33,7 @@ export class AddDebtComponent implements OnInit {
       creditor: ['', Validators.required],
       amount: ['', [Validators.required, Validators.min(0.01)]],
       description: ['', Validators.required]
-    });
+    }, {validator: DebtValidation.DuplicateUser});
 
     this.getUserNames();
   }
@@ -41,7 +42,7 @@ export class AddDebtComponent implements OnInit {
     this.userService.getUsernames<string>()
       .subscribe((usernames: any) => {
         this.usernames = usernames.body;
-      })
+      });
   }
 
   get f() {
@@ -49,34 +50,28 @@ export class AddDebtComponent implements OnInit {
   }
 
   onSubmit() {
-    if(this.debtForm.invalid){
+    if (this.debtForm.invalid) {
       return;
     }
 
     const debt = new Debt();
 
     // debt.id =  '',
-    debt.debtor =  this.f.debtor.value;
-    debt.creditor =  this.f.creditor.value;
-    debt.amount =  this.f.amount.value;
-    debt.description =  this.f.description.value;
-
-    console.log("debt");
-    console.log(debt);
+    debt.debtor = this.f.debtor.value;
+    debt.creditor = this.f.creditor.value;
+    debt.amount = this.f.amount.value;
+    debt.description = this.f.description.value;
 
     this.debtService.postDebt(debt)
       .pipe(first())
       .subscribe(
         data => {
-          console.log(data);
-          this.router.navigate(['/debts'])
+          // this.router.navigate(['debts']);
+          this.router.navigate(['/debts']);
         }, error1 => {
           console.log(error1);
         }
-      )
-
-
-
+      );
 
 
     // this.debtService.postDebt({})

@@ -5,11 +5,13 @@ export class Debt {
   amount: number;
   description: string;
   status: DebtStatus;
-  confirmedBy: string;
+  toConfirmBy: string;
+  date: Date;
 }
 
 export enum DebtStatus {
   NOT_CONFIRMED = 'NOT_CONFIRMED',
   CONFIRMED = 'CONFIRMED',
-  RESOLVED = 'RESOLVED'
+  RESOLVED = 'RESOLVED',
+  CONFIRMED_TO_BE_RESOLVED = 'CONFIRMED_TO_BE_RESOLVED'
 }

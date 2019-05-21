@@ -1,3 +1,12 @@
 <div *ngIf="userFromApi">
-  <p>Witaj <strong>{{userFromApi.firs}}</strong> !</p>
+  <div class="mat-display-1">
+    Witaj <strong>{{userFromApi.firstname}}</strong> !
+  </div>
+
+  <div>
+    <button mat-button routerLink="/debts">
+      <mat-icon>monetization_on</mat-icon>
+    </button>
+  </div>
+
 </div>

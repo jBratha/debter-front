@@ -4,8 +4,6 @@ import {MatSidenav} from '@angular/material';
 import {User} from './_models/user';
 import {Router} from '@angular/router';
 import {AuthenticationService} from './_services/authentication.service';
-import {Role} from './_models/role';
-import {PwaService} from './_services/pwa.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +16,7 @@ export class AppComponent {
   @ViewChild(MatSidenav) sidenav;
   nav = [
     {
-      'title': 'Moje dlugi',
+      'title': 'Moje długi',
       'path': '/debts'
     },
     {

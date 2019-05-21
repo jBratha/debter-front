@@ -1,7 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpbaseService} from '../http/httpbase.service';
 import {User} from '../_models/user';
-import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 
@@ -33,7 +31,7 @@ export class UserService {
     return this.http.get<User>(`${environment.api}/users/name/${username}`);
   }
 
-  getInfoAboutYourself() {
+  getInfoAboutYourself<T>() {
     return this.http.get<User>(`${environment.api}/users/me`);
   }
 

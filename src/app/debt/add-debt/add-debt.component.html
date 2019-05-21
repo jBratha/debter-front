@@ -37,9 +37,23 @@
       <textarea matInput formControlName="description"></textarea>
     </mat-form-field>
 
-    <!--    <mat-form-field>-->
+    <div *ngIf="debtForm.invalid" class="mat-error">
+      <div *ngIf="debtForm.get('creditor').touched && debtForm.get('creditor').errors">
+        <div *ngIf="debtForm.get('creditor').errors.SameUser === true">Wierzyciel nie może być taki sam jak dłużnik
+        </div>
+        <div *ngIf="!debtForm.get('creditor').errors.SameUser"> Wierzyciel musi być ustawiony</div>
+      </div>
+      <div *ngIf="debtForm.get('debtor').touched && debtForm.get('debtor').errors" class="mat-error"> Dłużnik musi być
+        ustawiony
+      </div>
+      <div *ngIf="debtForm.get('amount').touched && debtForm.get('amount').errors" class="mat-error"> Kwota musi być
+        dodatnia
+      </div>
+      <div *ngIf="debtForm.get('description').touched && debtForm.get('description').errors" class="mat-error">Opis nie
+        może być pusty
+      </div>
+    </div>
 
-    <!--    </mat-form-field>-->
     <mat-action-row fxLayout="row" fxLayoutAlign="space-evenly center">
       <button mat-raised-button (click)="onSubmit()" color="primary">Dodaj</button>
       <button mat-raised-button (click)="debtForm.reset()" type="reset" >Wyczyść</button>

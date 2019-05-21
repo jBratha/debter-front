@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
-import {User} from '../_models/user';
 import {Debt} from '../_models/debt';
 
 @Injectable({
@@ -19,6 +18,14 @@ export class DebtService {
   }
 
   postDebt(debt: Debt) {
-    return this.http.post(`${this.endpoint}/`, debt)
+    return this.http.post(`${this.endpoint}/`, debt);
+  }
+
+  confirm(debt: Debt) {
+    return this.http.get(`${this.endpoint}/${debt.id}/confirm`, {observe: 'response'});
+  }
+
+  resolve(debt: Debt) {
+    return this.http.get(`${this.endpoint}/${debt.id}/resolve`, {observe: 'response'});
   }
 }
