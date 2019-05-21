@@ -4,6 +4,8 @@ import {Debt, DebtStatus} from '../_models/debt';
 import {DebtService} from '../_services/debt.service';
 import {AuthenticationService} from '../_services/authentication.service';
 import {NavigationEnd, Router} from '@angular/router';
+import {DebtFilterComponent} from "./debt-filter/debt-filter.component";
+import {DebtFilterValues} from "./debt-filter/debt-filter-values";
 
 @Component({
   selector: 'app-debt',
@@ -21,6 +23,7 @@ export class DebtComponent implements OnInit {
     // {field: 'date', show: 'Data'},
     // {field: 'status', show: 'Stan'},
   ];
+  filterValues: DebtFilterValues;
 
   columnsToDisplay: string[];
   dataSource = new MatTableDataSource<Debt>();
@@ -49,8 +52,58 @@ export class DebtComponent implements OnInit {
     this.getDebts();
     this.username = this.authService.currentUserUsername();
     this.dataSource.sort = this.sort;
+    this.dataSource.filterPredicate = this.debtFilter();
     this.dataSource.paginator = this.paginator;
   }
+
+  // amountMatch(type: string, amount: number, value: number):boolean {
+  //   switch (type) {
+  //     case '>': return amount > value;
+  //     case '<': return amount < value;
+  //     case '=': return amount == value;
+  //     default: return false;
+  //   }
+  // }
+
+  debtFilter(): (data: any, filter: string) => boolean {
+    let amountMatch = function(type: string, amount: number, value: number):boolean {
+      if(!amount) return true;
+      switch (type) {
+        case '>': return amount > value;
+        case '<': return amount < value;
+        case '=': return amount == value;
+        default: return false;
+      }
+    };
+    let nameMatch = function(filterValue: [string], data: string): boolean {
+      if (!filterValue) return true;
+      if (filterValue.length < 1) return true;
+      for (let i of filterValue){
+        if(data.toLowerCase().indexOf(i) !== -1) return true;
+      }
+      return false;
+    };
+
+    let filterFunction = function (data, filter): boolean {
+
+
+      let searchTerms = JSON.parse(filter);
+      console.log(searchTerms);
+      // debtor & creditor
+
+      const creditor = nameMatch(searchTerms.creditor, data.creditor);
+      const debtor = nameMatch(searchTerms.debtor, data.debtor);
+      const amount = amountMatch(searchTerms.amountType, searchTerms.amountValue, data.amount);
+
+      console.log(data);
+      console.log(creditor, debtor, amount);
+
+      return creditor && debtor && amount;
+    };
+    return filterFunction;
+  }
+
+
 
   ngOnInit() {
     this.initialiseInvites();
@@ -60,8 +113,14 @@ export class DebtComponent implements OnInit {
     // this.dataSource.paginator = this.paginator;
   }
 
+  receiveMessage($event) {
+    this.filterValues = $event;
+    this.dataSource.filter = JSON.stringify(this.filterValues);
+    this.getTotalDebt();
+  }
+
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    // this.dataSource.filter = filterValue.trim().toLowerCase();
     this.getTotalDebt();
   }
 

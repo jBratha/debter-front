@@ -23,6 +23,7 @@ import {registerLocaleData} from '@angular/common';
 import localePl from '@angular/common/locales/pl';
 import { AddDebtComponent } from './debt/add-debt/add-debt.component';
 import { DebtFilterComponent } from './debt/debt-filter/debt-filter.component';
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 // import {FlexLayoutModule} from '@angular/flex-layout';
 registerLocaleData(localePl, 'pl');
@@ -48,6 +49,7 @@ registerLocaleData(localePl, 'pl');
     BrowserAnimationsModule,
     MaterialModule,
     AppRoutingModule,
+    FontAwesomeModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
     // FlexLayoutModule

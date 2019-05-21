@@ -19,7 +19,7 @@
       <mat-expansion-panel-header>
         <mat-panel-title>Filtr</mat-panel-title>
       </mat-expansion-panel-header>
-      <app-debt-filter></app-debt-filter>
+      <app-debt-filter (filterEvent)="receiveMessage($event)"></app-debt-filter>
 
     </mat-expansion-panel>
 

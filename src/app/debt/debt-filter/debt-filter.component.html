@@ -15,18 +15,20 @@
     </mat-select>
   </mat-form-field>
 
-  {{amountType.value}}
-  <mat-form-field>
-    <mat-select [formControl]="amountType">
-      <mat-select-trigger *ngIf="amountType.value == '>'"><mat-icon>chevron_right</mat-icon></mat-select-trigger>
-      <mat-select-trigger *ngIf="amountType.value == '<'"><mdb-icon fas icon="less-than"></mdb-icon></mat-select-trigger>
+  <mat-form-field >
+    <mat-label>Dług</mat-label>
+    <mat-select [formControl]="amountType" >
+      <mat-select-trigger *ngIf="amountType.value == '>'">Większy niż</mat-select-trigger>
+      <mat-select-trigger *ngIf="amountType.value == '<'">Mniejszy niż</mat-select-trigger>
+      <mat-select-trigger *ngIf="amountType.value == '='">Równy</mat-select-trigger>
 
-      <mat-option value=">"><mat-icon>chevron_right</mat-icon></mat-option>
-      <mat-option value="<"><mdb-icon fas icon="less-than"></mdb-icon></mat-option>
-      <mat-option value="==">=</mat-option>
+      <mat-option value=">">Większy niż</mat-option>
+      <mat-option value="<">Mniejszy niż</mat-option>
+      <mat-option value="=">Równy</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Wartość" [(ngModel)]="filter.filtervalue">
+    <mat-label>Wartość</mat-label>
+    <input matInput placeholder="Wartość" [formControl]="amount">
   </mat-form-field>
 </div>
