@@ -3,6 +3,7 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {Debt, DebtStatus} from '../_models/debt';
 import {DebtService} from '../_services/debt.service';
 import {AuthenticationService} from '../_services/authentication.service';
+import {NavigationEnd, Router} from '@angular/router';
 
 @Component({
   selector: 'app-debt',
@@ -10,13 +11,14 @@ import {AuthenticationService} from '../_services/authentication.service';
   styleUrls: ['./debt.component.scss']
 })
 export class DebtComponent implements OnInit {
+  navigationSubscription;
   username = '';
   displayColumns: Column[] = [
     {field: 'id', show: 'Id'},
     {field: 'debtor', show: 'Dłużnik', footer: 'Łącznie'},
     {field: 'creditor', show: 'Wierzyciel'},
-    // {field: 'amount', show: 'Ilość'},
     {field: 'description', show: 'Opis'},
+    // {field: 'date', show: 'Data'},
     // {field: 'status', show: 'Stan'},
   ];
 
@@ -28,17 +30,34 @@ export class DebtComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private debtService: DebtService,
-              private authService: AuthenticationService) {
+              private authService: AuthenticationService,
+              private router: Router) {
     this.columnsToDisplay = this.displayColumns.map(col => col.field);
     this.columnsToDisplay.splice(3, 0, 'amount');
     this.columnsToDisplay.splice(5, 0, 'status');
+    this.columnsToDisplay.splice(6, 0, 'date');
+    this.columnsToDisplay.push('buttons');
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+      if (e instanceof NavigationEnd) {
+        this.initialiseInvites();
+      }
+    });
   }
 
-  ngOnInit() {
+  initialiseInvites() {
+    // Set default values and re-fetch any data you need.
     this.getDebts();
     this.username = this.authService.currentUserUsername();
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+  }
+
+  ngOnInit() {
+    this.initialiseInvites();
+    // this.getDebts();
+    // this.username = this.authService.currentUserUsername();
+    // this.dataSource.sort = this.sort;
+    // this.dataSource.paginator = this.paginator;
   }
 
   applyFilter(filterValue: string) {
@@ -72,10 +91,14 @@ export class DebtComponent implements OnInit {
   getTotalDebt() {
     const all = this.dataSource.filteredData;
     if (all) {
-      const debt = all.filter(d => d.status === DebtStatus.CONFIRMED && d.debtor === this.username)
+      const debt = all.filter(d =>
+        (d.status === DebtStatus.CONFIRMED || d.status === DebtStatus.CONFIRMED_TO_BE_RESOLVED)
+        && d.debtor === this.username)
         .map(d => d.amount)
         .reduce((acc, value) => Number(acc) + Number(value), 0);
-      const credit = all.filter(d => d.status === DebtStatus.CONFIRMED && d.creditor === this.username)
+      const credit = all.filter(d =>
+        (d.status === DebtStatus.CONFIRMED || d.status === DebtStatus.CONFIRMED_TO_BE_RESOLVED)
+        && d.creditor === this.username)
         .map(d => d.amount)
         .reduce((acc, value) => Number(acc) + Number(value), 0);
       this.summary = credit - debt;
@@ -86,6 +109,8 @@ export class DebtComponent implements OnInit {
 
   getStatus(status: DebtStatus) {
     switch (status) {
+      case DebtStatus.CONFIRMED_TO_BE_RESOLVED:
+        return 'aktualny, do rozwiązania';
       case DebtStatus.CONFIRMED:
         return 'aktualny';
       case DebtStatus.NOT_CONFIRMED:
@@ -94,6 +119,36 @@ export class DebtComponent implements OnInit {
         return 'zapłacony';
     }
   }
+
+  showResolveButton(debt: Debt) {
+    return this.authService.isAdmin() ||
+      debt.status === 'CONFIRMED' ||
+      (debt.status === 'CONFIRMED_TO_BE_RESOLVED' && debt.toConfirmBy === this.username);
+  }
+
+  showConfirmButton(debt: Debt) {
+    return this.authService.isAdmin() ||
+      (debt.status === 'NOT_CONFIRMED' && debt.toConfirmBy === this.username);
+  }
+
+
+  confirm(debt: Debt) {
+    this.debtService.confirm(debt).subscribe((e: any) => {
+        this.router.navigate(['/debts']);
+      }, error1 => {
+        console.log(error1);
+      }
+    );
+  }
+
+  resolve(debt: Debt) {
+    this.debtService.resolve(debt).subscribe((e: any) => {
+      this.router.navigate(['/debts']);
+    }, error1 => {
+      console.log(error1);
+    });
+  }
+
 }
 
 class Column {

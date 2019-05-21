@@ -28,7 +28,8 @@ const routes: Routes = [
     path: 'debts',
     component: DebtComponent,
     canActivate: [AuthGuard],
-    data: {roles: [Role.User]}
+    data: {roles: [Role.User]},
+    runGuardsAndResolvers: 'always'
   },
   { path: 'register', component: RegisterComponent },
 
@@ -37,7 +38,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true})],
+  imports: [RouterModule.forRoot(routes, {useHash: true, onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
