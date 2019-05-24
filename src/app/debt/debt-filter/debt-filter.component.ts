@@ -14,7 +14,7 @@ import {DebtFilterValues} from "./debt-filter-values";
 export class DebtFilterComponent implements OnInit {
   debtors = new FormControl();
   creditors = new FormControl();
-  amountType = new FormControl('>');
+  amountType = new FormControl();
   amount = new FormControl();
   icons = {
     lessThan: faLessThan,

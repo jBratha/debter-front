@@ -1,3 +1,5 @@
+@import '~@angular/material/theming';
+
 .row-creditor {
   background-color: #dff0d8;
 }
@@ -38,6 +40,102 @@ tr.mat-footer-row {
   font-weight: bold;
 }
 
+
+.rounded {
+  border-collapse: collapse;
+  border-radius: 2em;
+  overflow: hidden;
+  @include mat-elevation(4);
+  //border-top-right-radius: 7px;
+  //border-top-left-radius: 7px;
+  //border-bottom-right-radius: 4px;
+  //border-bottom-left-radius: 4px;
+}
+
 //.mat-column-amount {
 //  //text-decoration: line-through;
+//}
+
+//@media screen and (max-width: 599px) {
+
+  //table, thead, tbody, th, td, tr {
+  //  display: block;
+  //}
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  //thead tr {
+  //  position: absolute;
+  //  top: -9999px;
+  //  left: -9999px;
+  //}
+  //
+  ////tr { border: 1px solid #ccc; }
+  //
+  //td {
+  //  /* Behave  like a "row" */
+  //  border: none;
+  //  border-bottom: 1px solid #eee;
+  //  position: relative;
+  //  padding-left: 50%;
+  //}
+  //
+  //td:before {
+  //  /* Now like a table header */
+  //  position: absolute;
+  //  /* Top/left values mimic padding */
+  //  top: 6px;
+  //  left: 6px;
+  //  width: 45%;
+  //  padding-right: 10px;
+  //  white-space: nowrap;
+  //}
+
+  /*
+    Label the data
+    */
+  //td:nth-of-type(1):before { content: "First Name"; }
+  //td:nth-of-type(2):before { content: "Last Name"; }
+  //td:nth-of-type(3):before { content: "Job Title"; }
+  //td:nth-of-type(4):before { content: "Favorite Color"; }
+  //td:nth-of-type(5):before { content: "Wars of Trek?"; }
+  //td:nth-of-type(6):before { content: "Secret Alias"; }
+  //td:nth-of-type(7):before { content: "Date of Birth"; }
+  //td:nth-of-type(8):before { content: "Dream Vacation City"; }
+  //td:nth-of-type(9):before { content: "GPA"; }
+  //td:nth-of-type(10):before { content: "Arbitrary Data"; }
+
+  //.mat-table .mat-row {
+  //  background-color: #721c24;
+//  //}
+//  .mat-table {
+//    vertical-align: middle;
+//  }
+//
+//  .mat-table .mat-row {
+//    border-bottom: 5px;
+//    display: block;
+//  }
+//
+//  .mat-table caption {
+//    font-size: 1em;
+//  }
+//
+//  .mat-table .mat-cell {
+//    border-bottom: 1px;
+//    display: block;
+//    font-size: 1em;
+//    text-align: right;
+//    font-weight: bold;
+//    height: 400px;
+//    margin-bottom: 4%;
+//  }
+//
+//  .mat-table .mat-cell:before {
+//    content: attr(data-label);
+//    float: left;
+//    text-transform: uppercase;
+//    font-weight: normal;
+//    font-size: .85em;
+//  }
+//
 //}

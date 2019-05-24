@@ -1,36 +1,35 @@
-<div>
+<div fxLayout="column" fxLayoutAlign="space-evenlly stretch" fxLayoutGap="20px">
 
-  <mat-accordion>
+  <div>
 
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Dodaj dług
-        </mat-panel-title>
-        <mat-panel-description>
-          Podaj szczegóły
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <app-add-debt></app-add-debt>
+    <mat-accordion >
 
-    </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Dodaj dług
+          </mat-panel-title>
+          <mat-panel-description>
+            Podaj szczegóły
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <app-add-debt></app-add-debt>
 
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>Filtr</mat-panel-title>
-      </mat-expansion-panel-header>
-      <app-debt-filter (filterEvent)="receiveMessage($event)"></app-debt-filter>
+      </mat-expansion-panel>
 
-    </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Filtr</mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-debt-filter (filterEvent)="receiveMessage($event)"></app-debt-filter>
 
-  </mat-accordion>
+      </mat-expansion-panel>
 
+    </mat-accordion>
 
-  <mat-form-field>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtr">
-  </mat-form-field>
+  </div>
 
-  <div class="mat-elevation-z8">
+  <div class="rounded responsive-table">
     <table mat-table
            matSort
            [dataSource]="dataSource" class="mat-elevation-z8">
@@ -76,7 +75,7 @@
       <tr mat-row
           [ngClass]="getRowStyle(element)"
           *matRowDef="let element; columns: columnsToDisplay;"></tr>
-      <tr mat-footer-row *matFooterRowDef="columnsToDisplay; sticky: true"></tr>
+      <tr mat-footer-row *matFooterRowDef="columnsToDisplay; sticky: true" fxShow fxHide.lt-sm></tr>
 
     </table>
     <mat-paginator [pageSizeOptions]="[10, 15, 20]" showFirstLastButtons></mat-paginator>
