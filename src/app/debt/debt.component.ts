@@ -4,7 +4,6 @@ import {Debt, DebtStatus} from '../_models/debt';
 import {DebtService} from '../_services/debt.service';
 import {AuthenticationService} from '../_services/authentication.service';
 import {NavigationEnd, Router} from '@angular/router';
-import {DebtFilterComponent} from "./debt-filter/debt-filter.component";
 import {DebtFilterValues} from "./debt-filter/debt-filter-values";
 
 @Component({
@@ -66,20 +65,24 @@ export class DebtComponent implements OnInit {
   // }
 
   debtFilter(): (data: any, filter: string) => boolean {
-    let amountMatch = function(type: string, amount: number, value: number):boolean {
-      if(!amount) return true;
+    let amountMatch = function (type: string, amount: number, value: number): boolean {
+      if (!amount) return true;
       switch (type) {
-        case '>': return amount > value;
-        case '<': return amount < value;
-        case '=': return amount == value;
-        default: return false;
+        case '>':
+          return amount > value;
+        case '<':
+          return amount < value;
+        case '=':
+          return amount == value;
+        default:
+          return false;
       }
     };
-    let nameMatch = function(filterValue: [string], data: string): boolean {
+    let nameMatch = function (filterValue: [string], data: string): boolean {
       if (!filterValue) return true;
       if (filterValue.length < 1) return true;
-      for (let i of filterValue){
-        if(data.toLowerCase().indexOf(i) !== -1) return true;
+      for (let i of filterValue) {
+        if (data.toLowerCase().indexOf(i) !== -1) return true;
       }
       return false;
     };
@@ -104,7 +107,6 @@ export class DebtComponent implements OnInit {
   }
 
 
-
   ngOnInit() {
     this.initialiseInvites();
     // this.getDebts();
@@ -127,6 +129,9 @@ export class DebtComponent implements OnInit {
   getDebts() {
     this.debtService.getAllDebts<Debt[]>()
       .subscribe((result: any) => {
+        console.log('result');
+        console.log(result);
+        console.log(result.body);
         result.body.map(debt => {
           debt.creditor = debt.creditor.username;
           debt.debtor = debt.debtor.username;

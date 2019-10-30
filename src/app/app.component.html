@@ -125,7 +125,9 @@
     <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-xs *ngIf="currentUser">
       <mat-icon>menu</mat-icon>
     </button>
-    <span>Dłużnik 2.0</span>
+    <span>{{ 'home.title' | translate }}</span>
+    <button (click)="useLanguage('pl')" mat-button>Pl</button>
+    <button (click)="useLanguage('en')" mat-button>En</button>
 
     <span class="example-spacer"></span>
 
@@ -161,6 +163,8 @@
           </div>
           <mat-list-item>
             <a mat-button (click)="logout()" *ngIf="currentUser">Wyloguj</a>
+            <a (click)="useLanguage('pl')" mat-button>Pl</a>
+            <a (click)="useLanguage('en')" mat-button>En</a>
 
           </mat-list-item>
         </mat-list>

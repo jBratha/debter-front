@@ -4,6 +4,7 @@ import {MatSidenav} from '@angular/material';
 import {User} from './_models/user';
 import {Router} from '@angular/router';
 import {AuthenticationService} from './_services/authentication.service';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-root',
@@ -33,9 +34,12 @@ export class AppComponent {
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
+    private translate: TranslateService,
     private router: Router,
     private authenticationService: AuthenticationService,
   ) {
+    translate.setDefaultLang('pl');
+    translate.use('pl');
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
@@ -49,4 +53,8 @@ export class AppComponent {
     this.router.navigate(['/login']);
   }
 
+  useLanguage(lang: string) {
+    console.log('Swapping lang to ' + lang);
+    this.translate.use(lang);
+  }
 }

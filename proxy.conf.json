@@ -1,0 +1,12 @@
+{
+  "/api/*": {
+    "target": "http://localhost:8085",
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/auth/*": {
+    "target": "https://localhost:8085",
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

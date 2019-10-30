@@ -1,5 +1,5 @@
 // import {Injectable} from '@angular/core';
-// import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+// import {HttpEvent, HttpHandler, MyHttpInterceptor, HttpRequest} from '@angular/common/http';
 // import {Router} from '@angular/router';
 // import {TokenStorage} from './token.storage';
 // import 'rxjs/add/operator/do';
@@ -8,7 +8,7 @@
 // const TOKEN_HEADER_KEY = 'Authorization';
 //
 // @Injectable()
-// export class Interceptor implements HttpInterceptor {
+// export class Interceptor implements MyHttpInterceptor {
 //
 //   constructor(private token: TokenStorage, private router: Router) {
 //   }
