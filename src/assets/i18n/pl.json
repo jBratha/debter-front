@@ -1,4 +1,33 @@
 {
   "Bad credentials!": "Niepoprawne dane logowania!",
-  "home.title": "Dłużnik 2.0"
+  "home.title": "Dłużnik 2.0",
+  "language": "Język",
+  "debt": {
+    "table": {
+      "header": {
+        "id": "Id",
+        "debtor": "Dłużnik",
+        "creditor": "Wierzyciel",
+        "amount": "Kwota",
+        "description": "Opis",
+        "state": "Stan",
+        "date": "Data",
+        "action": "Akcje"
+      },
+      "footer": {
+        "undefined": "",
+        "summary": "Łącznie"
+      },
+      "state": {
+        "NOT_CONFIRMED": "Niezatwierdzony",
+        "CONFIRMED": "Aktualny",
+        "RESOLVED": "Zapłacony",
+        "CONFIRMED_TO_BE_RESOLVED": "Aktualny, do rozwiązania"
+      },
+      "hint": {
+        "confirm": "Potwierdź dług",
+        "resolve": "Rozwiąż dług"
+      }
+    }
+  }
 }

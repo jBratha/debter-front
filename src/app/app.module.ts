@@ -27,6 +27,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {MyHttpInterceptor} from "./_helpers/my-http-interceptor.service";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {LanguageComponent} from './_component/language.picker/language.component';
 // import { TranslatePipe } from './_helpers/translate.pipe';
 
 // import {FlexLayoutModule} from '@angular/flex-layout';
@@ -47,6 +48,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     DebtComponent,
     AddDebtComponent,
     DebtFilterComponent,
+    LanguageComponent,
     // TranslatePipe,
   ],
   imports: [

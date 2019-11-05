@@ -1,4 +1,33 @@
 {
   "Bad credentials!": "Bad credentials!",
-  "home.title": "Debter 2.0"
+  "home.title": "Debter 2.0",
+  "language": "Language",
+  "debt": {
+    "table": {
+      "header": {
+        "id": "Id",
+        "debtor": "Debtor",
+        "creditor": "Creditor",
+        "amount": "Amount",
+        "description": "Description",
+        "state": "State",
+        "date": "Date",
+        "action": "Actions"
+      },
+      "footer": {
+        "undefined": "",
+        "summary": "Summary"
+      },
+      "state": {
+        "NOT_CONFIRMED": "Not confirmed",
+        "CONFIRMED": "Confirmed",
+        "RESOLVED": "Resolved",
+        "CONFIRMED_TO_BE_RESOLVED": "Confirmed, to be resolved"
+      },
+      "hint": {
+        "confirm": "Confirm debt",
+        "resolve": "Resolve debt"
+      }
+    }
+  }
 }

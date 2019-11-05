@@ -6,6 +6,12 @@ import {AuthenticationService} from '../_services/authentication.service';
 import {NavigationEnd, Router} from '@angular/router';
 import {DebtFilterValues} from "./debt-filter/debt-filter-values";
 
+class Column {
+  field: string;
+  footer?: string;
+  translateField: string;
+}
+
 @Component({
   selector: 'app-debt',
   templateUrl: './debt.component.html',
@@ -15,10 +21,10 @@ export class DebtComponent implements OnInit {
   navigationSubscription;
   username = '';
   displayColumns: Column[] = [
-    {field: 'id', show: 'Id'},
-    {field: 'debtor', show: 'Dłużnik', footer: 'Łącznie'},
-    {field: 'creditor', show: 'Wierzyciel'},
-    {field: 'description', show: 'Opis'},
+    {translateField: "debt.table.header.id", field: 'id'},
+    {translateField: "debt.table.header.debtor", field: 'debtor', footer: 'debt.table.footer.summary'},
+    {translateField: "debt.table.header.creditor", field: 'creditor'},
+    {translateField: "debt.table.header.description", field: 'description'},
     // {field: 'date', show: 'Data'},
     // {field: 'status', show: 'Stan'},
   ];
@@ -172,16 +178,17 @@ export class DebtComponent implements OnInit {
   }
 
   getStatus(status: DebtStatus) {
-    switch (status) {
-      case DebtStatus.CONFIRMED_TO_BE_RESOLVED:
-        return 'aktualny, do rozwiązania';
-      case DebtStatus.CONFIRMED:
-        return 'aktualny';
-      case DebtStatus.NOT_CONFIRMED:
-        return 'niezatwierdzony';
-      case DebtStatus.RESOLVED:
-        return 'zapłacony';
-    }
+    return "debt.table.state." + status;
+    // switch (status) {
+    //   case DebtStatus.CONFIRMED_TO_BE_RESOLVED:
+    //     return 'aktualny, do rozwiązania';
+    //   case DebtStatus.CONFIRMED:
+    //     return 'aktualny';
+    //   case DebtStatus.NOT_CONFIRMED:
+    //     return 'niezatwierdzony';
+    //   case DebtStatus.RESOLVED:
+    //     return 'zapłacony';
+    // }
   }
 
   showResolveButton(debt: Debt) {
@@ -213,10 +220,4 @@ export class DebtComponent implements OnInit {
     });
   }
 
-}
-
-class Column {
-  field: string;
-  show: string;
-  footer?: string;
 }

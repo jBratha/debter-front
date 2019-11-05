@@ -38,8 +38,6 @@ export class AppComponent {
     private router: Router,
     private authenticationService: AuthenticationService,
   ) {
-    translate.setDefaultLang('pl');
-    translate.use('pl');
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
@@ -53,8 +51,5 @@ export class AppComponent {
     this.router.navigate(['/login']);
   }
 
-  useLanguage(lang: string) {
-    console.log('Swapping lang to ' + lang);
-    this.translate.use(lang);
-  }
+
 }

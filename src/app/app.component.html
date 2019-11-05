@@ -126,8 +126,7 @@
       <mat-icon>menu</mat-icon>
     </button>
     <span>{{ 'home.title' | translate }}</span>
-    <button (click)="useLanguage('pl')" mat-button>Pl</button>
-    <button (click)="useLanguage('en')" mat-button>En</button>
+
 
     <span class="example-spacer"></span>
 
@@ -143,6 +142,8 @@
           </button>
         </div>
         <button mat-button (click)="logout()" *ngIf="currentUser">Wyloguj</button>
+        <!--        <span class="example-spacer"></span>-->
+        <app-language></app-language>
       </div>
     </div>
   </mat-toolbar>
@@ -162,9 +163,8 @@
             </mat-list-item>
           </div>
           <mat-list-item>
+            <app-language></app-language>
             <a mat-button (click)="logout()" *ngIf="currentUser">Wyloguj</a>
-            <a (click)="useLanguage('pl')" mat-button>Pl</a>
-            <a (click)="useLanguage('en')" mat-button>En</a>
 
           </mat-list-item>
         </mat-list>
