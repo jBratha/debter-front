@@ -1,128 +1,6 @@
-<!--<div *ngIf="currentUser" style="height: 100%">-->
-
-
-<!--<mat-sidenav-container >-->
-
-<!--<mat-toolbar color="primary">-->
-<!--<mat-toolbar-row>-->
-<!--<button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-xs>-->
-<!--<mat-icon>menu</mat-icon>-->
-<!--</button>-->
-<!--<span>Dłużnik 2.0</span>-->
-<!--&lt;!&ndash;<div fxShow="true" fxHide.lt-sm="true">&ndash;&gt;-->
-<!--&lt;!&ndash;<div fxFlex="80" fxLayout="row">&ndash;&gt;-->
-<!--&lt;!&ndash;<div *ngFor="let route of nav">&ndash;&gt;-->
-<!--&lt;!&ndash;<button&ndash;&gt;-->
-<!--&lt;!&ndash;mat-button&ndash;&gt;-->
-<!--&lt;!&ndash;routerLink="{{route.path}}"&ndash;&gt;-->
-<!--&lt;!&ndash;*ngIf="!route.requireAdmin || (route.requireAdmin && isAdmin())">&ndash;&gt;-->
-<!--&lt;!&ndash;{{route.title}}&ndash;&gt;-->
-<!--&lt;!&ndash;</button>&ndash;&gt;-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
-<!--&lt;!&ndash;<div fxFlex>&ndash;&gt;-->
-
-<!--<button mat-button (click)="logout()" *ngIf="currentUser">Wyloguj</button>-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;<span fxFill></span>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
-<!--</mat-toolbar-row>-->
-<!--</mat-toolbar>-->
-
-<!--<mat-sidenav #sidenav>-->
-<!--<mat-nav-list *ngFor="let route of nav">-->
-<!--<button-->
-<!--mat-button-->
-<!--routerLink="{{route.path}}"-->
-<!--*ngIf="!route.requireAdmin || (route.requireAdmin && isAdmin())">-->
-<!--{{route.title}}-->
-<!--</button>-->
-<!--</mat-nav-list>-->
-<!--<button mat-button (click)="logout()">Wyloguj</button>-->
-<!--</mat-sidenav>-->
-<!--<mat-sidenav-content>-->
-<!--&lt;!&ndash;<mat-drawer-content>&ndash;&gt;-->
-<!--<div class="app-content">-->
-<!--<app-alert></app-alert>-->
-<!--<router-outlet></router-outlet>-->
-<!--</div>-->
-
-<!--&lt;!&ndash;</mat-drawer-content>&ndash;&gt;-->
-<!--</mat-sidenav-content>-->
-<!--</mat-sidenav-container>-->
-
-<!--&lt;!&ndash;<div class="app-content">&ndash;&gt;-->
-<!--&lt;!&ndash;<app-alert></app-alert>&ndash;&gt;-->
-<!--&lt;!&ndash;<router-outlet></router-outlet>&ndash;&gt;-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-<!--</div>-->
-
-<!--<div *ngIf="!currentUser">-->
-<!--<div>-->
-<!--<app-alert></app-alert>-->
-<!--<router-outlet></router-outlet>-->
-<!--</div>-->
-<!--</div>-->
-
-
-<!--<div>-->
-<!--<mat-sidenav-container>-->
-<!--<mat-sidenav #sidenav mode="over">-->
-<!--<mat-list>-->
-<!--<mat-list-item *ngFor="let route of nav">-->
-<!--<button-->
-<!--mat-button-->
-<!--routerLink="{{route.path}}"-->
-<!--*ngIf="!route.requireAdmin || (route.requireAdmin && isAdmin())">-->
-<!--{{route.title}}-->
-<!--</button>-->
-<!--</mat-list-item>-->
-<!--</mat-list>-->
-<!--</mat-sidenav>-->
-<!--<mat-sidenav-content>-->
-<!--<mat-toolbar color="primary">-->
-<!--<button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-xs>-->
-<!--<mat-icon>menu</mat-icon>-->
-<!--</button>-->
-<!--<span>Dłużnik 2.0</span>-->
-<!--&lt;!&ndash;ODTAD &ndash;&gt;-->
-<!--<div fxShow="true" fxHide.lt-sm="true">-->
-<!--<div fxFlex="80" fxLayout="row">-->
-<!--<div *ngFor="let route of nav">-->
-<!--<button-->
-<!--mat-button-->
-<!--routerLink="{{route.path}}"-->
-<!--*ngIf="!route.requireAdmin || (route.requireAdmin && isAdmin())">-->
-<!--{{route.title}}-->
-<!--</button>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div fxFlex>-->
-<!--<button mat-button (click)="logout()">Wyloguj</button>-->
-<!--</div>-->
-<!--&lt;!&ndash;<span fxFill></span>&ndash;&gt;-->
-<!--</div>-->
-<!--&lt;!&ndash;USUNAC DOTAD EW&ndash;&gt;-->
-<!--</mat-toolbar>-->
-<!--<mat-drawer-container>-->
-<!--&lt;!&ndash;<mat-drawer mode="side" >&ndash;&gt;-->
-<!--&lt;!&ndash;&ndash;&gt;-->
-<!--&lt;!&ndash;</mat-drawer>&ndash;&gt;-->
-<!--<mat-drawer>-->
-
-<!--</mat-drawer>-->
-<!--<mat-drawer-content>-->
-<!--<router-outlet></router-outlet>-->
-<!--</mat-drawer-content>-->
-<!--</mat-drawer-container>-->
-<!--</mat-sidenav-content>-->
-<!--</mat-sidenav-container>-->
-<!--</div>-->
-
 <div style="height: 100vh;">
   <mat-toolbar color="primary">
-    <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-xs *ngIf="currentUser">
+    <button (click)="sidenav.toggle()" *ngIf="currentUser" fxHide.gt-xs fxShow mat-icon-button>
       <mat-icon>menu</mat-icon>
     </button>
     <span>{{ 'home.title' | translate }}</span>
@@ -133,15 +11,15 @@
     <div fxShow="true" fxHide.lt-sm="true" *ngIf="currentUser">
       <!-- The following menu items will be hidden on both SM and XS screen sizes -->
       <div fxLayout="row">
-        <div *ngFor="let route of nav">
+        <div *ngFor="let route of nav" class="display-flex">
           <button
             mat-button
             routerLink="{{route.path}}"
             *ngIf="!route.requireAdmin || (route.requireAdmin && isAdmin())">
-            {{route.title}}
+            {{route.title | translate}}
           </button>
         </div>
-        <button mat-button (click)="logout()" *ngIf="currentUser">Wyloguj</button>
+        <button (click)="logout()" *ngIf="currentUser" mat-button>{{'navigator.logout'|translate}}</button>
         <!--        <span class="example-spacer"></span>-->
         <app-language></app-language>
       </div>
@@ -158,13 +36,14 @@
                  (click)="sidenav.toggle()"
                  routerLink="{{route.path}}"
                  routerLinkActive="active">
-                {{route.title}}
+                {{ route.title | translate}}
               </a>
             </mat-list-item>
           </div>
+          <app-language></app-language>
+
           <mat-list-item>
-            <app-language></app-language>
-            <a mat-button (click)="logout()" *ngIf="currentUser">Wyloguj</a>
+            <a (click)="logout()" *ngIf="currentUser" mat-button>{{'navigator.logout'|translate}}</a>
 
           </mat-list-item>
         </mat-list>
@@ -175,11 +54,6 @@
       <div class="app-content">
         <app-alert></app-alert>
         <router-outlet></router-outlet>
-        <!--<button-->
-        <!--mat-raised-button color="primary"-->
-        <!--*ngIf="Pwa.promptEvent" (click)="installPwa()" fxShow="true" fxHide.lt-sm="true">-->
-        <!--Zainstaluj jako PWA-->
-        <!--</button>-->
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>

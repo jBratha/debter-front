@@ -2,6 +2,15 @@
   "Bad credentials!": "Niepoprawne dane logowania!",
   "home.title": "Dłużnik 2.0",
   "language": "Język",
+  "main-page": {
+    "hello": "Witaj ",
+    "debt-list": "Lista długów"
+  },
+  "navigator": {
+    "admin-page": "Admin",
+    "my-debts": "Moje długi",
+    "logout": "Wyloguj"
+  },
   "debt": {
     "table": {
       "header": {

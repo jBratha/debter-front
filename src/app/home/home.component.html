@@ -1,11 +1,11 @@
 <div *ngIf="userFromApi">
   <div class="mat-display-1">
-    Witaj <strong>{{userFromApi.firstname}}</strong> !
+    {{'main-page.hello' | translate}} <strong>{{userFromApi.firstname}}</strong> !
   </div>
 
   <div>
-    <button mat-button routerLink="/debts">
-      Lista długów
+    <button mat-button mat-raised-button routerLink="/debts">
+      {{'main-page.debt-list' | translate}}
       <mat-icon>monetization_on</mat-icon>
     </button>
   </div>

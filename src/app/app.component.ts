@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, EventEmitter, Output, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, HostListener, Output, ViewChild} from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
 import {MatSidenav} from '@angular/material';
 import {User} from './_models/user';
@@ -17,11 +17,11 @@ export class AppComponent {
   @ViewChild(MatSidenav) sidenav;
   nav = [
     {
-      'title': 'Moje długi',
+      'title': 'navigator.my-debts',
       'path': '/debts'
     },
     {
-      'title': 'Admin',
+      'title': 'navigator.admin-page',
       'path': '/admin',
       'requireAdmin': 'true'
     }
@@ -39,6 +39,7 @@ export class AppComponent {
     private authenticationService: AuthenticationService,
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+
   }
 
   isAdmin() {
@@ -49,6 +50,13 @@ export class AppComponent {
     this.sidenav.close();
     this.authenticationService.logout();
     this.router.navigate(['/login']);
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if (event.target.innerWidth > 599) {
+      this.sidenav.close();
+    }
   }
 
 

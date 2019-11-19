@@ -2,6 +2,15 @@
   "Bad credentials!": "Bad credentials!",
   "home.title": "Debter 2.0",
   "language": "Language",
+  "main-page": {
+    "hello": "Hello ",
+    "debt-list": "Debt list"
+  },
+  "navigator": {
+    "admin-page": "Admin",
+    "my-debts": "My debts",
+    "logout": "Logout"
+  },
   "debt": {
     "table": {
       "header": {

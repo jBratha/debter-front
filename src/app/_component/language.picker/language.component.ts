@@ -28,12 +28,9 @@ export class LanguageComponent implements OnInit {
   ngOnInit() {
   }
 
-  useLanguage(lang: string) {
+  changeLanguage(lang: string) {
     console.log('Swapping lang to ' + lang);
     this.translate.use(lang);
   }
 
-  changeLanguage() {
-    this.useLanguage(this.selectedLang);
-  }
 }
