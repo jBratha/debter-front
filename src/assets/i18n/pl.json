@@ -11,6 +11,11 @@
     "my-debts": "Moje długi",
     "logout": "Wyloguj"
   },
+  "common": {
+    "debtor": "Dłużnik",
+    "creditor": "Wierzyciel",
+    "debt": "Dług"
+  },
   "debt": {
     "table": {
       "header": {
@@ -58,7 +63,11 @@
       }
     },
     "filter": {
-      "title": "Filtr"
+      "title": "Filtr",
+      "gt": "Większy niż",
+      "lt": "Mniejszy niż",
+      "eq": "Równy",
+      "val": "Wartość"
     }
   }
 }

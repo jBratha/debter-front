@@ -1,40 +1,40 @@
 <mat-expansion-panel>
   <mat-expansion-panel-header>
-    <mat-panel-title>Filtr</mat-panel-title>
+    <mat-panel-title>{{'debt.filter.title'|translate}}</mat-panel-title>
   </mat-expansion-panel-header>
 
   <div fxLayout="row"
        fxLayout.lt-sm="column">
 
     <mat-form-field fxFlex="16">
-      <mat-label>Dłużnik</mat-label>
+      <mat-label>{{'common.debtor'|translate}}</mat-label>
       <mat-select [formControl]="debtors" multiple>
         <mat-option *ngFor="let user of users" [value]="user">{{user}}</mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field fxFlex="16">
-      <mat-label>Wierzyciel</mat-label>
+      <mat-label>{{'common.creditor'|translate}}</mat-label>
       <mat-select [formControl]="creditors" multiple>
         <mat-option *ngFor="let user of users" [value]="user">{{user}}</mat-option>
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field >
-      <mat-label>Dług</mat-label>
+    <mat-form-field>
+      <mat-label>{{'common.debt'|translate}}</mat-label>
       <mat-select [formControl]="amountType" #amountValueType>
-        <mat-select-trigger *ngIf="amountType.value == '<'">Większy niż</mat-select-trigger>
-        <mat-select-trigger *ngIf="amountType.value == '>'">Mniejszy niż</mat-select-trigger>
-        <mat-select-trigger *ngIf="amountType.value == '='">Równy</mat-select-trigger>
+        <mat-select-trigger *ngIf="amountType.value == '<'">{{'debt.filter.gt' | translate}}</mat-select-trigger>
+        <mat-select-trigger *ngIf="amountType.value == '>'">{{'debt.filter.lt' | translate}}</mat-select-trigger>
+        <mat-select-trigger *ngIf="amountType.value == '='">{{'debt.filter.eq' | translate}}</mat-select-trigger>
 
-        <mat-option value="<">Większy niż</mat-option>
-        <mat-option value=">">Mniejszy niż</mat-option>
-        <mat-option value="=">Równy</mat-option>
+        <mat-option value="<">{{'debt.filter.gt' | translate}}</mat-option>
+        <mat-option value=">">{{'debt.filter.lt' | translate}}</mat-option>
+        <mat-option value="=">{{'debt.filter.eq' | translate}}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field [hidden]="amountValueType.empty">
-      <mat-label>Wartość {{amountValueType.empty}}</mat-label>
-      <input matInput type="number" placeholder="Wartość" [formControl]="amount">
+      <mat-label>{{'debt.filter.val' | translate}}</mat-label>
+      <input [formControl]="amount" matInput placeholder="{{'debt.filter.val' | translate}}" type="number">
     </mat-form-field>
-</div>
+  </div>
 </mat-expansion-panel>

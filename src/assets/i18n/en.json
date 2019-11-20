@@ -11,6 +11,11 @@
     "my-debts": "My debts",
     "logout": "Logout"
   },
+  "common": {
+    "debtor": "Debtor",
+    "creditor": "Creditor",
+    "debt": "Debt"
+  },
   "debt": {
     "table": {
       "header": {
@@ -58,7 +63,11 @@
       }
     },
     "filter": {
-      "title": "Filter"
+      "title": "Filter",
+      "gt": "Greater than",
+      "lt": "Less than",
+      "eq": "Equal to",
+      "val": "Value"
     }
   }
 }
