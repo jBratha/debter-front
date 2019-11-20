@@ -1,4 +1,4 @@
-<div style="height: 100vh;">
+<div>
   <mat-toolbar color="primary">
     <button (click)="sidenav.toggle()" *ngIf="currentUser" fxHide.gt-xs fxShow mat-icon-button>
       <mat-icon>menu</mat-icon>
@@ -30,7 +30,7 @@
     <mat-sidenav #sidenav fxLayout="column" *ngIf="currentUser">
       <div fxLayout="column">
         <mat-list>
-          <div *ngFor="let route of nav">
+          <div *ngFor="let route of nav" fxLayoutAlign="center">
             <mat-list-item *ngIf="!route.requireAdmin || (route.requireAdmin && isAdmin())">
               <a mat-button
                  (click)="sidenav.toggle()"
@@ -40,7 +40,9 @@
               </a>
             </mat-list-item>
           </div>
-          <app-language></app-language>
+          <mat-list-item>
+            <app-language></app-language>
+          </mat-list-item>
 
           <mat-list-item>
             <a (click)="logout()" *ngIf="currentUser" mat-button>{{'navigator.logout'|translate}}</a>
