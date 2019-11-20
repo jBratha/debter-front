@@ -49,6 +49,14 @@ export class AddDebtComponent implements OnInit {
     return this.debtForm.controls;
   }
 
+  status(str) {
+    console.log(this.debtForm.get(str));
+  }
+
+  status2() {
+    console.log(this.debtForm);
+  }
+
   onSubmit() {
     if (this.debtForm.invalid) {
       return;

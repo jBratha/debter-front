@@ -37,6 +37,28 @@
         "confirm": "Confirm debt",
         "resolve": "Resolve debt"
       }
+    },
+    "add": {
+      "panel-title": "Add debt",
+      "panel-description": "Provide details",
+      "debtor": "Debtor",
+      "creditor": "Creditor",
+      "amount": "Amount",
+      "description": "Description",
+      "button": {
+        "add": "Add",
+        "clear": "Clear"
+      },
+      "errors": {
+        "cred-debt-same": "Creditor cannot be the same as debtor",
+        "cred-not-set": "Creditor must be set",
+        "debt-not-set": "Debtor must be set",
+        "amount-must-be-positive": "Amount must be positive",
+        "desc-empty": "Description cannot be empty"
+      }
+    },
+    "filter": {
+      "title": "Filter"
     }
   }
 }

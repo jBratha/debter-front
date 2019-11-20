@@ -1,10 +1,10 @@
 <mat-expansion-panel>
   <mat-expansion-panel-header>
     <mat-panel-title>
-      Dodaj dług
+      {{'debt.add.panel-title'|translate}}
     </mat-panel-title>
     <mat-panel-description>
-      Podaj szczegóły
+      {{'debt.add.panel-description'|translate}}
     </mat-panel-description>
   </mat-expansion-panel-header>
 
@@ -15,7 +15,7 @@
            fxLayout.lt-sm="column">
 
         <mat-form-field fxFlex="30">
-          <mat-label>Dłużnik</mat-label>
+          <mat-label>{{ 'debt.add.debtor' | translate }}</mat-label>
           <mat-select formControlName="debtor">
             <mat-option
               *ngFor="let username of usernames" [value]="username">
@@ -25,7 +25,7 @@
         </mat-form-field>
 
         <mat-form-field fxFlex="30">
-          <mat-label>Wierzyciel</mat-label>
+          <mat-label>{{ 'debt.add.creditor' |translate }}</mat-label>
           <mat-select formControlName="creditor">
             <mat-option
               *ngFor="let username of usernames"
@@ -36,7 +36,7 @@
         </mat-form-field>
 
         <mat-form-field fxFlex>
-          <mat-label>Kwota</mat-label>
+          <mat-label>{{ 'debt.add.amount' |translate }}</mat-label>
           <input type="number" matInput formControlName="amount">
           <mat-hint>Minimum 0.01</mat-hint>
         </mat-form-field>
@@ -44,44 +44,41 @@
 
 
       <mat-form-field>
-        <mat-label>Opis</mat-label>
+        <mat-label>{{ 'debt.add.description' |translate }}</mat-label>
         <textarea matInput formControlName="description"></textarea>
       </mat-form-field>
 
+
       <div *ngIf="debtForm.invalid" class="mat-error">
-        <div *ngIf="debtForm.get('creditor').touched && debtForm.get('creditor').errors">
-          <div *ngIf="debtForm.get('creditor').errors.SameUser === true">Wierzyciel nie może być taki sam jak dłużnik
-          </div>
-          <div *ngIf="!debtForm.get('creditor').errors.SameUser"> Wierzyciel musi być ustawiony</div>
+
+        <div *ngIf="debtForm.get('creditor').touched  && debtForm.get('debtor').touched && debtForm.errors?.sameUser">
+          {{ 'debt.add.errors.cred-debt-same' | translate }}
         </div>
-        <div *ngIf="debtForm.get('debtor').touched && debtForm.get('debtor').errors" class="mat-error"> Dłużnik musi być
-          ustawiony
+
+        <div *ngIf="debtForm.get('creditor').touched && debtForm.get('creditor').errors && !debtForm.errors?.sameUser"
+             class="mat-error">
+          {{ 'debt.add.errors.cred-not-set' | translate }}
         </div>
-        <div *ngIf="debtForm.get('amount').touched && debtForm.get('amount').errors" class="mat-error"> Kwota musi być
-          dodatnia
+        <div *ngIf="debtForm.get('debtor').touched && debtForm.get('debtor').errors && !debtForm.errors?.sameUser"
+             class="mat-error">
+          {{ 'debt.add.errors.debt-not-set' | translate }}
         </div>
-        <div *ngIf="debtForm.get('description').touched && debtForm.get('description').errors" class="mat-error">Opis nie
-          może być pusty
+        <div *ngIf="debtForm.get('amount').touched && debtForm.get('amount').errors" class="mat-error">
+          {{ 'debt.add.errors.amount-must-be-positive' | translate }}
+        </div>
+        <div *ngIf="debtForm.get('description').touched && debtForm.get('description').errors" class="mat-error">
+          {{ 'debt.add.errors.desc-empty' | translate }}
         </div>
       </div>
 
+
       <mat-action-row fxLayout="row" fxLayoutAlign="space-evenly center">
-        <button mat-raised-button (click)="onSubmit()" color="primary">Dodaj</button>
-        <button mat-raised-button (click)="debtForm.reset()" type="reset" >Wyczyść</button>
+        <button (click)="onSubmit()" color="primary" mat-raised-button>{{ 'debt.add.button.add' |translate }}</button>
+        <button (click)="debtForm.reset()" mat-raised-button
+                type="reset">{{ 'debt.add.button.clear' |translate }}</button>
       </mat-action-row>
 
     </form>
 
-    <!--  <mat-form-field>-->
-    <!--    <mat-label>Dłużnik</mat-label>-->
-    <!--  </mat-form-field>-->
-
-    <!--    <input matInput placeholder="id">-->
-</div>
-<!--
-Dłużnik
-Wierzyciel
-ilość
-opis
--->
+  </div>
 </mat-expansion-panel>

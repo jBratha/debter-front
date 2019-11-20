@@ -37,6 +37,28 @@
         "confirm": "Potwierdź dług",
         "resolve": "Rozwiąż dług"
       }
+    },
+    "add": {
+      "panel-title": "Dodaj dług",
+      "panel-description": "Podaj szczegóły",
+      "debtor": "Dłużnik",
+      "creditor": "Wierzyciel",
+      "amount": "Kwota",
+      "description": "Opis",
+      "button": {
+        "add": "Dodaj",
+        "clear": "Wyczyść"
+      },
+      "errors": {
+        "cred-debt-same": "Wierzyciel nie może być taki sam jak dłużnik",
+        "cred-not-set": "Wierzyciel musi być ustawiony",
+        "debt-not-set": "Dłużnik musi być ustawiony",
+        "amount-must-be-positive": "Kwota musi być dodatnia",
+        "desc-empty": "Opis nie może być pusty"
+      }
+    },
+    "filter": {
+      "title": "Filtr"
     }
   }
 }
