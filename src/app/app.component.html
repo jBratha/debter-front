@@ -25,7 +25,7 @@
         <!--        <app-language></app-language>-->
       </div>
     </div>
-  <div fxHide.lt-sm="true" fxShow="true">
+  <div *ngIf="!currentUser || !mediaObs.isActive('xs')">
     <app-language></app-language>
   </div>
   </mat-toolbar>

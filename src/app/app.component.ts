@@ -5,6 +5,7 @@ import {User} from './_models/user';
 import {Router} from '@angular/router';
 import {AuthenticationService} from './_services/authentication.service';
 import {TranslateService} from "@ngx-translate/core";
+import {MediaObserver} from "@angular/flex-layout";
 
 @Component({
   selector: 'app-root',
@@ -37,12 +38,14 @@ export class AppComponent {
     private translate: TranslateService,
     private router: Router,
     private authenticationService: AuthenticationService,
+    public mediaObs: MediaObserver,
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
 
   }
 
   isAdmin() {
+    this
     return this.authenticationService.isAdmin();
   }
 
@@ -54,7 +57,7 @@ export class AppComponent {
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    if (event.target.innerWidth > 599) {
+    if (event.target.innerWidth > 599 && this.currentUser) {
       this.sidenav.close();
     }
   }
