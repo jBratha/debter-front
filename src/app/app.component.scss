@@ -1,45 +1,15 @@
-//.app-container {
-//  //display: flex;
-//  //flex-direction: column;
-//  //position: absolute;
-//  //top: 0;
-//  //bottom: 0;
-//  left: 0;
-//  right: 0;
-//  //height: 100%;
-//}
-//
-//.app-is-mobile .app-toolbar {
-//  position: fixed;
-//  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
-//  z-index: 2;
-//}
-//
-//h1.app-app-name {
-//  margin-left: 8px;
-//}
-//
-//.app-sidenav-container {
-//  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
-//     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
-//  flex: 1;
-//}
-//
-//
-//.fill-remaining-space {
-//  /* This fills the remaining space, by using flexbox.
-//     Every toolbar row uses a flexbox row layout. */
-//  flex: 1 1 auto;
-//}
-//.app-toolbar {
-//  flex: 1 1 auto;
-//  //height: 100vh;
-//}
-////.app-content {
-//  //flex: 1 1 auto;
-//  //position: relative;
-//  //overflow-y: auto;
-////}
 .display-flex {
   display: flex;
 }
+
+.app-toolbar {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.not-logged-lang {
+  right: 10px;
+}
+

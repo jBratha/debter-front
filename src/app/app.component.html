@@ -1,9 +1,10 @@
-<div>
-  <mat-toolbar color="primary">
+<!--<div>-->
+<mat-toolbar color="primary">
     <button (click)="sidenav.toggle()" *ngIf="currentUser" fxHide.gt-xs fxShow mat-icon-button>
       <mat-icon>menu</mat-icon>
     </button>
     <span>{{ 'home.title' | translate }}</span>
+
 
 
     <span class="example-spacer"></span>
@@ -21,9 +22,12 @@
         </div>
         <button (click)="logout()" *ngIf="currentUser" mat-button>{{'navigator.logout'|translate}}</button>
         <!--        <span class="example-spacer"></span>-->
-        <app-language></app-language>
+        <!--        <app-language></app-language>-->
       </div>
     </div>
+  <div fxHide.lt-sm="true" fxShow="true">
+    <app-language></app-language>
+  </div>
   </mat-toolbar>
 
   <mat-sidenav-container fxFlexFill>
@@ -59,4 +63,4 @@
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
-</div>
+<!--</div>-->

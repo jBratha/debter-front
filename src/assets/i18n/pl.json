@@ -69,5 +69,18 @@
       "eq": "Równy",
       "val": "Wartość"
     }
+  },
+  "auth": {
+    "logging": "Logowanie",
+    "username": "Nazwa użytkownika",
+    "password": "Hasło",
+    "action-login": "Zaloguj",
+    "register": "Rejestracja",
+    "name": "Imię",
+    "second-name": "Nazwisko",
+    "pass-req": "Minimalna długość: 5",
+    "repeat-pass": "Powtórz hasło",
+    "action-register": "Zarejestruj",
+    "action-cancel": "Anuluj"
   }
 }

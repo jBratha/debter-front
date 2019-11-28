@@ -1,0 +1,17 @@
+//mat-form-field-infix
+
+div {
+  padding: 0 16px;
+
+
+  mat-form-field {
+    width: 100px;
+
+    mat-select {
+      width: 100px;
+      font-family: Roboto, "Helvetica Neue", sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+}

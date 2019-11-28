@@ -69,5 +69,18 @@
       "eq": "Equal to",
       "val": "Value"
     }
+  },
+  "auth": {
+    "logging": "Login",
+    "username": "Username",
+    "password": "Password",
+    "action-login": "Log in",
+    "register": "Register",
+    "name": "Name",
+    "second-name": "Surname",
+    "pass-req": "Minimal length: 5",
+    "repeat-pass": "Repeat password",
+    "action-register": "Register",
+    "action-cancel": "Cancel"
   }
 }
